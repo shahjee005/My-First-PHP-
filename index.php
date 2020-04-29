@@ -1,5 +1,7 @@
 
-<?php include './includes/datatypes.php';?>
+<?php
+//tis file's code will exicute right here in the file
+include './includes/datatypes.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
