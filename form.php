@@ -5,7 +5,6 @@
   { // If it DOESN'T exist, let's make a default value (this way we can array_push to it later!)
     $_SESSION['interests'] = array();
   }
-  $_SESSION['interests'] = array_value ($_SESSION['interests']);
   $message = 'Welcome to the website, please log in.';
   // If a form has been submitted to this page, we can collect the submission
   // information using one of two SUPERGLOBALS:
@@ -64,10 +63,22 @@
     </label>
     <input type="submit" value="Sign In">
   </form>
+  <?php if ( !empty( $_SESSION['interests'] ) ) : // Check if there ARE interests. ?>
+    <h2>My Interests:</h2>
+    <ul>
+      <?php foreach ( $_SESSION['interests'] as $interest ) : // Output EACH interest in the array. ?>
+        <li>
+          <?php echo $interest; ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
   <pre>
+    <strong>$_POST contents:</strong>
     <?php var_dump( $_POST ); ?>
   </pre>
   <pre>
+    <strong>$_SESSION contents:</strong>
     <?php var_dump( $_SESSION ); ?>
   </pre>
 </body>
