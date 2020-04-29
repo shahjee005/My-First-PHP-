@@ -1,15 +1,16 @@
 
-<nav> 
-<h1>Webiste Navigation  </h1>
-<ul>  
-<li> 
-<a href ="./index.php"> Home </a>
-</li>
-<li> <a href= "./includes/form.php"> Form </a>
-</li>
-</ul>
- </nav> 
- <?php // By deafult, antthing written directly in a PHP file wil be sent 
- // to the browser ( or whatever client made the request.)
- // see above how i have some HTML outputting, as I did not inculde any PHP tags 
- //(<?php etc.) that would tell PHP otherwise.
+<nav>
+  <h2>Website Navigation</h2>
+  <ul>
+    <li>
+      <a href="./index.php">Home</a>
+    </li>
+    <li>
+      <a href="./form.php">Form</a>
+    </li>
+  </ul>
+</nav>
+<?php // By default, anything written in a PHP file will be sent to
+      // the browser (or whatever client made the request.) See above,
+      // we have some HTML outputting, as we did not include any PHP
+      // tags (<?php etc.) that would tell PHP otherwise.
