@@ -1,4 +1,5 @@
 <?php 
+//Basic Assignemnt 
 $myMessege= 'My First PHP';
 
 //Data types 
