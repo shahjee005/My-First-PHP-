@@ -1,5 +1,11 @@
 <?php
-$messsage= 'Welcome to website , please logIn'; 
+  session_start(); // BEFORE ANY OUTPUT, YOU MUST DECLARE IF YOU'D LIKE TO USE SESSION.
+  // Let's check if our SESSION entry exists...
+  if ( !isset( $_SESSION['interests'] ) )
+  { // If it DOESN'T exist, let's make a default value (this way we can array_push to it later!)
+    $_SESSION['interests'] = array();
+  }
+  $message = 'Welcome to the website, please log in.';
   // If a form has been submitted to this page, we can collect the submission
   // information using one of two SUPERGLOBALS:
   // $_GET [array] (if the form was submitted with a GET method.)
@@ -11,13 +17,21 @@ $messsage= 'Welcome to website , please logIn';
     // instead of index numbers.) Key-value pair for associative.
     $submittedUsername = $_POST['username'];
     $submittedPassword = $_POST['password'];
-    //Expected username and Password (hardcoded.)
-    $username= 'Syed';
-    $password= 'mypass';
-    //Successful login ? 
-    if (($username===$submittedUsername) && ($password=== $submittedPassword))
+    // Expected username and password (hardcoded.)
+    $username = 'Syed';
+    $password = 'mypass';
+    // Successful login...
+    if ( ( $username === $submittedUsername ) && ( $password === $submittedPassword ) )
     {
-        $messsage = 'Hello ' .$username .'Thankyou for log in ';
+      $message = 'Hello, ' . $username . ', thank you for logging in!';
+      // We are adding a new element to an array using the array_push function.
+      // The first argument is the array, the second is the element/value we are adding.
+      array_push( $_SESSION['interests'], $_POST['interest'] );
+    }
+    // Unsuccessful login...
+    else
+    {
+      $message = 'Uh oh! Please try again, your username and/or password were incorrect!';
     }
   }
 ?><!DOCTYPE html>
@@ -32,8 +46,8 @@ $messsage= 'Welcome to website , please logIn';
   <?php include './includes/navigation.php'; ?>
   <h2>Sign In Form</h2>
   <p>
-  <?php echo $messsage;//output our "sign-in" related messege ?>
-  </P>
+    <?php echo $message; // Output our "sign-in" related message. ?>
+  </p>
   <form action="./form.php" method="POST"><?php // Forms can use GET or POST method. ?>
     <label for="username">
       Username:
@@ -43,10 +57,17 @@ $messsage= 'Welcome to website , please logIn';
       Password:
       <input type="password" name="password" id="password">
     </label>
+    <label for="interest">
+      Add an interest:
+      <input type="text" name="interest" id="interest">
+    </label>
     <input type="submit" value="Sign In">
   </form>
   <pre>
     <?php var_dump( $_POST ); ?>
+  </pre>
+  <pre>
+    <?php var_dump( $_SESSION ); ?>
   </pre>
 </body>
 </html>
