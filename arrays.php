@@ -1,4 +1,3 @@
-  
 <?php
   /**
    * Indexed arrays.
@@ -6,7 +5,7 @@
   // Assignment.
   $myIndexedArray = array( 'Dog', 'Cat', 'Fish', 'Bird' );
   // Selecting the "second" item (square brackets with the INDEX #1.)
-  $secondItem = $myIndexedArray[1];
+  $secondItem = $myIndexedArray[1]; // "Cat"
   // Adding a new element to our INDEXED array.
   $myIndexedArray[] = 'Lizard';
 
@@ -17,6 +16,7 @@
   $myAssociativeArray = array(
     'name'      => 'Bob',
     'age'       => 36,
+    // An array in an array makes this MULTIDIMENSIONAL.
     'interests' => array( // Notice, this is an INDEXED array INSIDE our ASSOCIATIVE ARRAY.
       'PHP',
       'JavaScript',
@@ -24,11 +24,11 @@
     )
   );
   // Retrieve specific value (square brackets with the KEY name.)
-  $bobAge = $myAssociativeArray['age'];
+  $bobAge = $myAssociativeArray['age']; // 36
   // Add a new key/value pair to an EXISTING array.
   $myAssociativeArray['occupation'] = 'Programmer';
   // Get a specific interest.
-  $secondInterest = $myAssociativeArray['interests'][1];
+  $secondInterest = $myAssociativeArray['interests'][1]; // "JavaScript"
   // Add a new interest.
   $myAssociativeArray['interests'][] = 'HTML';
 ?><!DOCTYPE html>
@@ -40,5 +40,32 @@
 </head>
 <body>
   <h1>PHP Arrays</h1>
+  <h2>Indexed Array</h2>
+  <ul>
+    <?php foreach ( $myIndexedArray as $animal ) : ?>
+      <li>
+        <?php echo( $animal ); ?>
+      </li>
+    <?php endforeach; ?>
+  </ul>
+  <h2>Associative Array</h2>
+  <dl>
+      <?php foreach ( $myAssociativeArray as $key => $value ) { // We can call upon KEY and VALUE at once in our loop! Note the fat arrow syntax. ?>
+        <dt><?php echo( $key ); // This array element's Key. ?></dt>
+        <dd>
+          <?php
+            // Checking if this is the interests (or another) array.
+            if ( is_array( $value ) )
+            { // Output each element in the array.
+              foreach ( $value as $element ) echo $element . ', ';
+            }
+            else
+            { // Display the string / integer value, otherwise.
+              echo( $value ); // This array element's Value.
+            }
+          ?>
+        </dd>
+      <?php } // Ends our foreach. ?>
+  </dl>
 </body>
 </html>
