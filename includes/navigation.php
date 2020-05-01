@@ -17,6 +17,9 @@
     <li>
       <a href="./oop-and-file.php">OOP and File Retrieval / Reading</a>
     </li>
+    <li>
+      <a href="./api-request-test.php">API Request Text (JS + Endpoint) </a>
+    </li>
   </ul>
 </nav>
 <?php // By default, anything written in a PHP file will be sent to

@@ -1,4 +1,11 @@
 <?php
+/**
+ * This file is an API endpoint (NOT A WEBPAGE.)
+ * Scripts (front-end, or otherwise) can make requests to this file
+ * and receive a JSON response. It is up to that script what it will
+ * do with the data!
+ */
+
 $pets = array(
   'Bear' => array(
     'age' => 4,
@@ -33,3 +40,12 @@ $pets = array(
     )
   )
 );
+
+// Set headers to be more descriptive.
+header( 'Content-Type: application/json' );
+
+// Convert from a PHP object/array, to a JSON string.
+$petsJSON = json_encode( $pets );
+
+// Send this back to whomever (or whatever) made the request.
+echo $petsJSON;
