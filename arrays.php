@@ -40,6 +40,7 @@
 </head>
 <body>
   <h1>PHP Arrays</h1>
+  <?php include './includes/navigation.php'; ?>
   <h2>Indexed Array</h2>
   <ul>
     <?php foreach ( $myIndexedArray as $animal ) : ?>
@@ -57,7 +58,10 @@
             // Checking if this is the interests (or another) array.
             if ( is_array( $value ) )
             { // Output each element in the array.
-              foreach ( $value as $element ) echo $element . ', ';
+              foreach ( $value as $element )
+              {
+                echo $element . ', ';
+              }
             }
             else
             { // Display the string / integer value, otherwise.
